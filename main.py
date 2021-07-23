@@ -28,8 +28,10 @@ while game_is_on:
     # When player finishes, restart player
     if player.ycor() > 280:
         player.restart_player()
+        car_manager.increase_speed()
         scoreboard.level += 1
         scoreboard.update_score()
+        
     
     if car_manager.check_collision(player):
         game_is_on = False

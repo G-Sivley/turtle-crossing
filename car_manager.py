@@ -3,13 +3,14 @@ import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 5
 
 
 class CarManager:
     def __init__(self):
         self.cars = []
         self.make_car()
+        self.move_speed = STARTING_MOVE_DISTANCE
                 
     def make_car(self):
         car = Turtle()
@@ -22,7 +23,7 @@ class CarManager:
 
     def move_cars(self):
         for car in self.cars:
-            new_x = car.xcor() - STARTING_MOVE_DISTANCE
+            new_x = car.xcor() - self.move_speed
             current_y = car.ycor()
             car.goto(x=new_x, y=current_y)
             
@@ -32,6 +33,10 @@ class CarManager:
     
     def check_collision(self, player):
         for car in self.cars:
-            if car.distance(player) < 27:
+            if car.distance(player) < 25:
                 return True
         return False
+    
+    
+    def increase_speed(self):
+        self.move_speed += MOVE_INCREMENT
